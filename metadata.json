@@ -1,0 +1,6 @@
+{
+  "name": "TikTok Analytics Tracker & Telegram Bot Portal",
+  "description": "Portal web y sistema de monitoreo 24/7 de vídeos de TikTok con analítica temporal (por hora, día, semana), alertas de hitos, detector de picos virales, integración con Telegram y despliegue listo para Docker y Portainer en Raspberry Pi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

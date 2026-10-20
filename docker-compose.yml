@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  tiktok-tracker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tiktok-tracker:latest
+    container_name: tiktok_tracker_portal
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - BOT_TOKEN=${BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - CHECK_INTERVAL_MINUTES=${CHECK_INTERVAL_MINUTES:-5}
+      - TZ=${TZ:-Europe/Madrid}
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
