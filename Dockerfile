@@ -9,8 +9,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY package*.json ./
-RUN npm ci
+COPY package*.json .npmrc* ./
+
+# Instalar dependencias con compatibilidad garantizada
+RUN npm install --legacy-peer-deps
 
 COPY . .
 RUN npm run build
@@ -30,8 +32,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY package*.json ./
-RUN npm ci --omit=dev
+COPY package*.json .npmrc* ./
+RUN npm install --omit=dev --legacy-peer-deps
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/server.ts ./server.ts

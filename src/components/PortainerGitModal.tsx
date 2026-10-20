@@ -14,11 +14,8 @@ export const PortainerGitModal: React.FC<PortainerGitModalProps> = ({ onClose })
     setTimeout(() => setCopiedKey(null), 2500);
   };
 
-  const gitSnippet = `# 1. Crea un nuevo repositorio en tu GitHub (ej: tiktok-tracker)
-# 2. Ejecuta en este proyecto para subir todo el código y la web a tu cuenta:
-git remote add origin https://github.com/TU_USUARIO/tiktok-tracker.git
-git branch -M main
-git push -u origin main`;
+  const gitSnippet = `# Sube la corrección a tu repositorio de GitHub:
+git push origin main --force`;
 
   const dockerComposeSnippet = `version: '3.8'
 
